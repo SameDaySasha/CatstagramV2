@@ -88,6 +88,10 @@ const createComment = (commentText) => {
     const newComment = document.createElement("p");
     newComment.innerText = commentText;
 
+   
+    
+
+
     const deleteButton = document.createElement('button');
     deleteButton.className = "delete-button";
     deleteButton.style.marginLeft = "15px";
@@ -101,6 +105,15 @@ const createComment = (commentText) => {
     newCommentContainer.appendChild(deleteButton);
     const comments = document.querySelector(".comments");
     comments.appendChild(newCommentContainer);
+     //storage
+    //create a an array of comments. for each element, save into localStorage
+    const commentsArr = Array.from(document.querySelectorAll("p"));
+    const newArr = [];
+    for(let i of commentsArr){
+        newArr.push(i.innerText);
+    }
+    localStorage.setItem("comment", JSON.stringify(newArr));
+
 };
 
 
