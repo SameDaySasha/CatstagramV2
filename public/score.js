@@ -68,14 +68,21 @@ const vote = e => {
     
     // update score
     updateScore(newScore);
+    localStorage.setItem('score', newScore)
 };
 
 export const resetScore = () => {
     // reset score to 0
-    updateScore(0);
+    let score = localStorage.getItem('score')
+    if(score){
+        updateScore(score)
+    }else {updateScore(0)}
+    ;
+        
 };
 
 const updateScore = (newScore) => {
     const score = document.querySelector('.score');
     score.innerText = newScore;
+    localStorage.setItem('score', newScore)
 };

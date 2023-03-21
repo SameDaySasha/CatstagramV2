@@ -18,9 +18,14 @@ export const createMainContent = () => {
     container.append(newKittenBtn);
     container.appendChild(img);
 
-    fetchImage();
+let image = localStorage.getItem('image')
+if(image){
+    const savedImage = document.querySelector('img')
+    savedImage.src = image
+}else { fetchImage();}
+   
 };
-
+// storeImage()
 const fetchImage = async () => {
     // Fetch image from API and set img url
     try {
@@ -31,7 +36,7 @@ const fetchImage = async () => {
         const kittenImgUrl = kittenData[0].url;
         const kittenImg = document.querySelector("img");
         kittenImg.src = kittenImgUrl;
-
+        localStorage.setItem('image', kittenImgUrl)
         // After the image is finished loading, reset the score and comments
         kittenImg.addEventListener('load', () => {
             resetScore();
